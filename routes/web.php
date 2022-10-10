@@ -21,6 +21,7 @@ Route::post('/do-register', [AuthController::class,"doRegister"]);
 Route::get('/dashboard', [AuthController::class,"dashboard"]);
 Route::get('/notactivedashboard', [AuthController::class,"notactivedashboard"]);
 Route::get('/logout', [AuthController::class,"logout"]);
+Route::post('/Add_package', [AuthController::class,"AddPackage"]);
 
 
 

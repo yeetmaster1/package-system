@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rules\Password;
 use App\Models\User;
+use App\Models\packages;
 use Illuminate\Support\Facades\Auth;
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
@@ -22,6 +23,39 @@ class AuthController extends Controller
 
     }
 
+    public function AddPackage(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'userID' => 'required',
+            'company' => 'required',
+            'service' => 'required',
+            'width' => 'required',
+            'height' => 'required',
+            'length' => 'required',
+            'weight' => 'required',
+
+        ]); // create the validations
+        if ($validator->fails())   //check all validations are fine, if not then redirect and show error messages
+        {
+            return response()->json($validator->errors(),422);  
+            // validation failed return back to form
+
+        } else {
+            //validations are passed, save new package in database
+            $package = new packages;
+            $package->userID = $request->userID;
+            $package->company = $request->company;
+            $package->service = $request->service;
+            $package->width = $request->width;
+            $package->height = $request->height;
+            $package->length = $request->length;
+            $package->weight = $request->weight;
+            $User->save();
+            
+            return response()->json(["status"=>true,"msg"=>"You have successfully added this package, click on the veiw packages to access your package data"]);  
+           
+        }
+    }
 
     function doLogin(Request $request)
     {

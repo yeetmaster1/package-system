@@ -194,28 +194,25 @@
           <label for="address">Company Service<span>*</span></label>
           <div>
                 <select class="service_id">
-                  <option selected value="" disabled selected>Service</option>
-                  <option value="fedexAIR">FedexAIR</option>
-                  <option value="fedexGroud">FedexGroud</option>
                 </select>
             </div>
         </div>
         <div class="item">
           <div class="name-item">
             <div>
-              <input type="text" name="width" placeholder="width [cm]" />
+              <input type="text" class="width" placeholder="width [cm]" />
             </div>
             <div>
-              <input type="text" name="height" placeholder="height [cm]" />
+              <input type="text" class="height" placeholder="height [cm]" />
             </div>
           </div>
           <div class="item">
             <div class="name-item">
               <div>
-                <input type="text" name="length" placeholder="length [cm]" />
+                <input type="text" class="length" placeholder="length [cm]" />
               </div>
               <div>
-                <input type="text" name="weight" placeholder="weight [gram]" />
+                <input type="text" class="weight" placeholder="weight [gram]" />
               </div>
             </div>
           </div>
@@ -233,11 +230,47 @@
 $(document).ready(function () {
 
     $('.company_id').on('change', function () {
-        
+    //this functions allows us to select the company and service dynamically
+       var opt =  $('.company_id option:selected').val();
+       console.log(opt);
+
+       if (opt == 'fedex') {
+        $('.service_id').html('')
+        $('.service_id').append(
+            '     <option selected value="" disabled selected>Service</option>\
+                  <option value="fedexAIR">FedexAIR</option>\
+                  <option value="fedexGroud">FedexGroud</option>'
+        );
+       }else{
+        $('.service_id').html('')
+        $('.service_id').append(
+            '     <option selected value="" disabled selected>Service</option>\
+                  <option value="UPSExpress">UPSExpress</option>\
+                  <option value="UPS2DAY">UPS2DAY</option>'
+        );
+       };
     });
 
     $(document).on('click', '.Create-packages',  function (e) {
         e.preventDefault();
+        data = {
+            'userID': {{$user = Auth::user()->id;}},
+            'company': $('.company_id option:selected').val(),
+            'service': $('.service_id option:selected').val(),
+            'width' : $('.width').val(),
+            'height' : $('.height').val(),
+            'length' : $('.length').val(),
+            'weight' : $('.weight').val(),
+        };
+        $.ajax({
+            type: "POST",
+            url: "/Add_package",
+            data: date,
+            dataType: "json",
+            success: function (response) {
+                
+            }
+        });
     });
 
 
