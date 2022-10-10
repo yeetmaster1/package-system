@@ -8,6 +8,7 @@
 <title>esri package system</title>
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <style>
       html, body {
       min-height: 100%;
@@ -151,6 +152,9 @@
       padding-bottom:5px;
       }
       }
+      .error {
+      color: red
+    }
     </style>
 
 
@@ -183,7 +187,7 @@
         <div class="item">
           <label for="name">Company Name<span>*</span></label>
           <div>
-                <select class="company_id">
+                <select name="company" class="company_id">
                   <option selected value="" disabled selected>Company</option>
                   <option value="fedex">FedEx</option>
                   <option value="ups">UPS</option>
@@ -193,26 +197,26 @@
         <div class="item">
           <label for="address">Company Service<span>*</span></label>
           <div>
-                <select class="service_id">
+                <select name="service" class="service_id">
                 </select>
             </div>
         </div>
         <div class="item">
           <div class="name-item">
             <div>
-              <input type="text" class="width" placeholder="width [cm]" />
+              <input type="text" name="width" class="width" placeholder="width [cm]" />
             </div>
             <div>
-              <input type="text" class="height" placeholder="height [cm]" />
+              <input type="text" name="height"  class="height" placeholder="height [cm]" />
             </div>
           </div>
           <div class="item">
             <div class="name-item">
               <div>
-                <input type="text" class="length" placeholder="length [cm]" />
+                <input type="text" name="length" class="length" placeholder="length [cm]" />
               </div>
               <div>
-                <input type="text" class="weight" placeholder="weight [gram]" />
+                <input type="text" name="weight" class="weight" placeholder="weight [gram]" />
               </div>
             </div>
           </div>
@@ -262,16 +266,37 @@ $(document).ready(function () {
             'length' : $('.length').val(),
             'weight' : $('.weight').val(),
         };
+        $.ajaxSetup({
+           headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+          });
         $.ajax({
             type: "POST",
             url: "/Add_package",
-            data: date,
+            data: data,
             dataType: "json",
             success: function (response) {
-                
+                console.log(response.status);
+            },
+            error: function (response) {  
+                if (response.status == 422) {
+                $(".alert").remove();
+                var erroJson = JSON.parse(response.responseText);
+                for (var err in erroJson) {
+                    for (var errstr of erroJson[err])
+                        console.log(err);
+                        $("[name='" + err + "']").after("<div class='alert alert-danger'>" + errstr + "</div>");
+                     }
             }
-        });
+            else
+            {
+                alert('your package profile has been created succefully');
+            }
+        }
+
     });
+});
 
 
 });

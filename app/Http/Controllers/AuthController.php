@@ -26,13 +26,13 @@ class AuthController extends Controller
     public function AddPackage(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'userID' => 'required',
+            'userID' => 'required|Integer',
             'company' => 'required',
             'service' => 'required',
-            'width' => 'required',
-            'height' => 'required',
-            'length' => 'required',
-            'weight' => 'required',
+            'width' => 'required|Integer',
+            'height' => 'required|Integer',
+            'length' => 'required|Integer',
+            'weight' => 'required|Integer',
 
         ]); // create the validations
         if ($validator->fails())   //check all validations are fine, if not then redirect and show error messages
@@ -50,7 +50,7 @@ class AuthController extends Controller
             $package->height = $request->height;
             $package->length = $request->length;
             $package->weight = $request->weight;
-            $User->save();
+            $package->save();
             
             return response()->json(["status"=>true,"msg"=>"You have successfully added this package, click on the veiw packages to access your package data"]);  
            
