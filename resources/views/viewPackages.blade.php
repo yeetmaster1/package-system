@@ -145,27 +145,55 @@ h2 a {
 		<tr>
 			<th><h1>Company</h1></th>
 			<th><h1>service</h1></th>
-			<th><h1>width</h1></th>
-			<th><h1>height</h1></th>
-            <th><h1>length</h1></th>
-            <th><h1>weight</h1></th>
+			<th><h1>width [cm]</h1></th>
+			<th><h1>height [cm]</h1></th>
+      <th><h1>length [cm]</h1></th>
+      <th><h1>weight [cm]</h1></th>
 		</tr>
 	</thead>
 	<tbody>
-		<tr>
-			<td>Google</td>
-			<td>9518</td>
-			<td>6369</td>
-			<td>01:32:50</td>
-		</tr>
+
 	</tbody>
 </table>
 <script>
     $(document).ready(function () {
+        FetchPackages();
+
+      function FetchPackages() { 
+        $.ajax({
+          type: "GET",
+          url: "/fetch-packages/"+{{$user = Auth::user()->id;}},
+          dataType: "json",
+          success: function (response) {
+            $('tbody').html("");
+
+            $.each(response.packages, function (key, item) {
+
+              $('tbody').append(
+                '     <tr>\
+			                <td>'+item.company+'</td>\
+			                <td>'+item.service+'</td>\
+			                <td>'+item.width+'</td>\
+			                <td>'+item.height+'</td>\
+                      <td>'+item.length+'</td>\
+			                <td>'+item.weight+'</td>\
+		                  </tr>'
+              
+              )
+            })       
+          }
+        });
+
+       }
         
         
-        
-        
+
+       $(document).on('click','#create_packages', function (e) {
+        e.preventDefault();
+        window.location = 'dashboard'
+       });
+
+
         $(document).on('click','#logout', function (e) {
         e.preventDefault();
         $.ajax({

@@ -34,7 +34,16 @@ class AuthController extends Controller
     }
 
 
+    public function FetchPackages($id)
+    {
+        $packages = DB::table('packages')
+        ->where('userID', '=' , $id )
+        ->get();
 
+        return response()->json([
+            'packages'=>$packages
+        ]);
+    }
 
     public function AddPackage(Request $request)
     {
