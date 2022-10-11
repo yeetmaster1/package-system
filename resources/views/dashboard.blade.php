@@ -169,8 +169,8 @@
       <span class="navbar-toggler-icon"></span>
     </button>
     <div>
-    <button class="btn mr-sm-2" >view packages</button>
-    <button class="btn btn-outline-success my-2 my-sm-0" >Logout</button>
+    <button class="btn mr-sm-2" id="view_packages" >view packages</button>
+    <button id="logout" class="btn btn-outline-success my-2 my-sm-0" >Logout</button>
     </div>
   </nav>
   
@@ -255,6 +255,31 @@ $(document).ready(function () {
        };
     });
 
+    $(document).on('click','#view_packages', function (e) {
+        e.preventDefault();
+        $.ajax({
+            type: "GET",
+            url: "/view-packages",
+            success: function (response) {
+                window.location = response.redirect_location
+            }
+        });
+
+    });
+
+
+    $(document).on('click','#logout', function (e) {
+        e.preventDefault();
+        $.ajax({
+            type: "GET",
+            url: "/logout",
+            success: function (response) {
+                window.location = 'login'
+            }
+        });
+
+    });
+
     $(document).on('click', '.Create-packages',  function (e) {
         e.preventDefault();
         data = {
@@ -278,6 +303,7 @@ $(document).ready(function () {
             dataType: "json",
             success: function (response) {
                 console.log(response.status);
+                alert('your package profile has been created succefully');
             },
             error: function (response) {  
                 if (response.status == 422) {
@@ -288,10 +314,6 @@ $(document).ready(function () {
                         console.log(err);
                         $("[name='" + err + "']").after("<div class='alert alert-danger'>" + errstr + "</div>");
                      }
-            }
-            else
-            {
-                alert('your package profile has been created succefully');
             }
         }
 

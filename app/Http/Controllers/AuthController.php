@@ -22,6 +22,19 @@ class AuthController extends Controller
         return view("register");
 
     }
+    function packagesView()
+    {
+        return view("viewPackages");
+
+    }
+
+    public function ViewPackages()
+    {
+        return response()->json(["status"=>true,"redirect_location"=>url("viewPackages")]);
+    }
+
+
+
 
     public function AddPackage(Request $request)
     {
