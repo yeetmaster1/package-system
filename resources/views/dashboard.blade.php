@@ -234,7 +234,7 @@ $(document).ready(function () {
     $('.company_id').on('change', function () {
     //this functions allows us to select the company and service dynamically
        var opt =  $('.company_id option:selected').val();
-       console.log(opt);
+      
 
        if (opt == 'fedex') {
         $('.service_id').html('')
@@ -284,7 +284,7 @@ $(document).ready(function () {
             'userID': {{$user = Auth::user()->id;}},
             'company': $('.company_id option:selected').val(),
             'service': $('.service_id option:selected').val(),
-            'width' : $('.width').val(),
+            'width' :  $('.width').val(),
             'height' : $('.height').val(),
             'length' : $('.length').val(),
             'weight' : $('.weight').val(),
@@ -302,6 +302,12 @@ $(document).ready(function () {
             success: function (response) {
                 console.log(response.status);
                 alert('your package profile has been created succefully');
+                $('.company_id option:selected').val('');
+                $('.service_id option:selected').val('');
+                $('.width').val('');
+                $('.height').val('');
+                $('.length').val('');
+                $('.weight').val('');
             },
             error: function (response) {  
                 if (response.status == 422) {
