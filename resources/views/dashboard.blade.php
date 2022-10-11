@@ -158,9 +158,6 @@
     }
     </style>
 
-
-
-
 <nav class="navbar navbar-expand-lg navbar-light bg-light justify-content-between">
     <a class="navbar-brand">
         <img src="/images/logo.PNG" width="30" height="30" class="d-inline-block align-top" alt="">
@@ -233,7 +230,7 @@
 <script>
 
 $(document).ready(function () {
-
+  
     $('.company_id').on('change', function () {
     //this functions allows us to select the company and service dynamically
        var opt =  $('.company_id option:selected').val();

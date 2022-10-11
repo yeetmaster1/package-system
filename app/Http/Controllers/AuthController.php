@@ -8,7 +8,6 @@ use Illuminate\Validation\Rules\Password;
 use App\Models\User;
 use App\Models\packages;
 use Illuminate\Support\Facades\Auth;
-use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
 class AuthController extends Controller
 {
