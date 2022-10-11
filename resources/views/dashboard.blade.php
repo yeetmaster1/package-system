@@ -161,8 +161,8 @@
 
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light justify-content-between">
-    <a class="navbar-brand" href="#">
-        <img src="/resources/images/logo.PNG" width="30" height="30" class="d-inline-block align-top" alt="">
+    <a class="navbar-brand">
+        <img src="/images/logo.PNG" width="30" height="30" class="d-inline-block align-top" alt="">
         esri package system
     </a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
