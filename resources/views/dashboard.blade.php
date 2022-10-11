@@ -51,7 +51,8 @@
       }
       .banner {
       position: relative;
-      height: 320px;  
+      height: 320px;
+      background-image: url("/images/background-image.jpg");   
       background-size: cover;
       display: flex;
       justify-content: center;
