@@ -65,3 +65,28 @@ If you discover a security vulnerability within Laravel, please send an e-mail t
 
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
 # package-system
+
+To view this code in action you must have xampp (or just php installed to PATH) and composer.
+After that you open the file and then run this command.
+php artisan serve
+this will start the server on your local ip address not your localhost though keep that in mind.
+
+
+##design
+
+I took a very minimalist approach to the design and only added few touches in terms of logging the information about the company and service to make it more dynamic.
+
+##stack used 
+
+in this project i used PHP (laravel) and jquery(ajax) for my calls and in this case if you are unfimiliar with the way laravel works, it works on the principle of MVC and so you could say that my Authcontroller is the API for this website TASK.
+
+##speed
+
+It seems at first glance that the website is a tad bit slow and that is becuase all my calls or at least a big majority rely on the database's response 
+with that in mind i was only able to get a datacenter in the US for the free subscription to elephantsql and so it has impacted the websites performance quite a lot.
+
+##Help 
+
+if you need any help viewing this code in action and or need any assistance please feel free to contact me via email and i would be more than happy to upload this code to a live website for testing. 
+
+
