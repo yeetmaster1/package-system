@@ -300,6 +300,7 @@ $(document).ready(function () {
             data: data,
             dataType: "json",
             success: function (response) {
+                $(".alert").remove();
                 console.log(response.status);
                 alert('your package profile has been created succefully');
                 $('.company_id option:selected').val('');
