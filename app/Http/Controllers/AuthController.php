@@ -45,15 +45,16 @@ class AuthController extends Controller
     }
 
     public function AddPackage(Request $request)
-    {
+    {   
+        //fix integer problem 
         $validator = Validator::make($request->all(), [
             'userID' => 'required|Integer',
             'company' => 'required',
             'service' => 'required',
-            'width' => 'required|Integer',
-            'height' => 'required|Integer',
-            'length' => 'required|Integer',
-            'weight' => 'required|Integer',
+            'width' => 'required|numeric|between:0,10000',
+            'height' => 'required|numeric|between:0,10000',
+            'length' => 'required|numeric|between:0,10000',
+            'weight' => 'required|numeric|between:0,10000',
 
         ]); // create the validations
         if ($validator->fails())   //check all validations are fine, if not then redirect and show error messages

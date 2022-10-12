@@ -18,10 +18,10 @@ return new class extends Migration
             $table->integer('userID');
             $table->string('company');
             $table->string('service');
-            $table->integer('width');
-            $table->integer('height');
-            $table->integer('length');
-            $table->integer('weight');
+            $table->decimal('width', 8, 2);
+            $table->decimal('height', 8, 2);
+            $table->decimal('length', 8, 2);
+            $table->decimal('weight', 8, 2);
             $table->timestamps();
         });
     }
@@ -33,6 +33,6 @@ return new class extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('users');
     }
 };

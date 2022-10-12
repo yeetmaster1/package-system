@@ -202,19 +202,19 @@
         <div class="item">
           <div class="name-item">
             <div>
-              <input type="text" name="width" class="width" placeholder="width [cm]" />
+              <input type="text" name="width" class="width" />
             </div>
             <div>
-              <input type="text" name="height"  class="height" placeholder="height [cm]" />
+              <input type="text" name="height"  class="height" />
             </div>
           </div>
           <div class="item">
             <div class="name-item">
               <div>
-                <input type="text" name="length" class="length" placeholder="length [cm]" />
+                <input type="text" name="length" class="length"  />
               </div>
               <div>
-                <input type="text" name="weight" class="weight" placeholder="weight [gram]" />
+                <input type="text" name="weight" class="weight" />
               </div>
             </div>
           </div>
@@ -237,6 +237,10 @@ $(document).ready(function () {
       
 
        if (opt == 'fedex') {
+        $('.width').attr("placeholder", "width [cm]");
+        $('.height').attr("placeholder", "height [cm]");
+        $('.length').attr("placeholder", "length [cm]");
+        $('.weight').attr("placeholder", "weight [gram]");
         $('.service_id').html('')
         $('.service_id').append(
             '     <option selected value="" disabled selected>Service</option>\
@@ -244,6 +248,10 @@ $(document).ready(function () {
                   <option value="fedexGroud">FedexGroud</option>'
         );
        }else{
+        $('.width').attr("placeholder", "width [inch]");
+        $('.height').attr("placeholder", "height [inch]");
+        $('.length').attr("placeholder", "length [inch]");
+        $('.weight').attr("placeholder", "weight [pound]");
         $('.service_id').html('')
         $('.service_id').append(
             '     <option selected value="" disabled selected>Service</option>\
@@ -280,6 +288,7 @@ $(document).ready(function () {
 
     $(document).on('click', '.Create-packages',  function (e) {
         e.preventDefault();
+        //change dynamic of placeholder
         data = {
             'userID': {{$user = Auth::user()->id;}},
             'company': $('.company_id option:selected').val(),
