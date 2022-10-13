@@ -33,5 +33,5 @@ Route::get('/fetch-packages/{id}', [AuthController::class,"FetchPackages"]);
 
 
 Route::get('/', function () {
-    return view('register');
+    return view('login');
 });
