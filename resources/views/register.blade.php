@@ -52,7 +52,7 @@
             <div class="form-group">
                 <button type="submit" class="btn btn-primary">REGISTER</button>
                 <br></br>
-                <h6>if your already a user <a href="http://127.0.0.1:8000/login">click here</a></h6>
+                <h6>if your already a user <a href="https://infograph-task.herokuapp.com/login">click here</a></h6>
               </div>
             </form>
           </div>

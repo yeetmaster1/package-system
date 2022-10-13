@@ -41,7 +41,7 @@
               <div class="form-group">
                 <button type="submit" class="btn btn-primary">LOGIN</button>
                 <br></br>
-                <h6>not a user <a href="http://127.0.0.1:8000/register">click here</a></h6>
+                <h6>not a user <a href="https://infograph-task.herokuapp.com/register">click here</a></h6>
               </div>
             </form>
           </div>
